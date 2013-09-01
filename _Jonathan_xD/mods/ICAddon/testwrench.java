@@ -28,9 +28,9 @@ public class testwrench extends Item {
 		//par2EntityPlayer.dropItem(BlockIDDrop, 0);
 		if(BlockIDDrop == MainClass.MachineID || BlockIDDrop == MainClass.MachineID2 || BlockIDDrop == MainClass.blockGeneratorID || BlockIDDrop == MainClass.ICElectricID)
 		{			
-			if(par2EntityPlayer.inventory.getFirstEmptyStack() != -1 || par2EntityPlayer.inventory.hasItemStack(new ItemStack(Block.blocksList[BlockIDDrop],1,BlockIDDropMetadata)) == true)
+			if(par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Block.blocksList[BlockIDDrop],1,BlockIDDropMetadata)) == true/*|| par2EntityPlayer.inventory.hasItemStack(new ItemStack(Block.blocksList[BlockIDDrop],1,BlockIDDropMetadata)) == true*/)
 			{
-				par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Block.blocksList[BlockIDDrop],1,BlockIDDropMetadata));
+				//par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Block.blocksList[BlockIDDrop],1,BlockIDDropMetadata));
 				//par3World.removeBlockTileEntity(par4, par5, par6);
 			}
 			else
@@ -41,11 +41,9 @@ public class testwrench extends Item {
 		}
 		return true;
 	}
-	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg)
 	{
-		this.itemIcon = reg.registerIcon("icaddon:testwrench");
-		this.setUnlocalizedName("testwrench");
+		this.itemIcon = reg.registerIcon("ICAddon:testwrench");
 	}
 }

@@ -27,7 +27,7 @@ public class MainClass {
 	public static Item testwrench;
 	public static Item industrialIron;
 	public static int MachineID;
-	public static int industrialIronID;
+	public int industrialIronID;
 	public static int MachineID2;
 	public static int blockGeneratorID;
 	public static int ICElectricID;
@@ -53,11 +53,13 @@ public class MainClass {
 	}
 	@EventHandler
 	public void load(FMLInitializationEvent event){
-		GameRegistry.registerItem(testwrench, "testwrench");
-		LanguageRegistry.addName(testwrench, "testwrench");
+		GameRegistry.registerItem(testwrench, "inteligentWrench");
+		LanguageRegistry.addName(testwrench, "Iteligent Wrench");
 		GameRegistry.addRecipe(new ItemStack(testwrench,1), new Object[]{"axc","xex","xhx",'a', Item.ingotIron, 'c', Item.ingotIron, 'e', Item.ingotGold, 'h',Block.cloth});
-		GameRegistry.addShapelessRecipe(new ItemStack(industrialIron), new Object[]{Item.coal,Item.coal,Item.coal,Item.ingotIron});
+		GameRegistry.addShapelessRecipe(new ItemStack(industrialIron,5), new Object[]{Item.coal,Item.coal,Item.coal,Item.coal,Item.ingotIron});
 		OreDictionary.registerOre("ingotRefinedIron", new ItemStack (industrialIron));
+		GameRegistry.registerItem(industrialIron, "industrialIron");
+		LanguageRegistry.addName(industrialIron,"Industrial Iron");
 
 		
 		
