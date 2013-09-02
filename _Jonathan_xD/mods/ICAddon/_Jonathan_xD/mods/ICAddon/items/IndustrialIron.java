@@ -1,4 +1,4 @@
-package _Jonathan_xD.mods.ICAddon;
+package _Jonathan_xD.mods.ICAddon.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
