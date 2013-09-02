@@ -1,0 +1,17 @@
+[
+{
+  "modid": "ICAddon",
+  "name": "ICAddon",
+  "description": ".",
+  "version": "v1.0",
+  "credits": "Created by _Jonathan_xD"  and NarigudoBR
+  "logoFile": "",
+  "mcversion": "1.6.2",
+  "url": "",
+  "updateUrl": "",
+  "authors": [ "_Jonathan_xD", "NarigudoBR" ],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": ["mod_MinecraftForge"]
+}
+]

@@ -1,9 +1,11 @@
 package _Jonathan_xD.mods.ICAddon;
 
+import java.io.File;
+
 import _Jonathan_xD.mods.ICAddon.blocks.InteligentOre;
 import _Jonathan_xD.mods.ICAddon.items.IndustrialIron;
 import _Jonathan_xD.mods.ICAddon.items.InteligentGem;
-import _Jonathan_xD.mods.ICAddon.tools.testwrench;
+import _Jonathan_xD.mods.ICAddon.tools.inteligentWrench;
 import _Jonathan_xD.mods.ICAddon.world.WorldGeneration;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -23,15 +25,15 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "ICAddon",version = "v1.0",name = "ICAddon")
+@Mod(modid = "inteligentTools",version = "v1.0",name = "Inteligent Tools")
 @NetworkMod(clientSideRequired = true,serverSideRequired = false)
 
 public class MainClass {
 	@Instance
 	public static MainClass instance;
 
-	public int IDTW; 
-	public static Item testwrench;
+	public int inteligentWrenchID; 
+	public static Item inteligentWrench;
 	public static Item industrialIron;
 	public static Item gemInteligent;
 	public static Block oreInteligent;
@@ -42,6 +44,7 @@ public class MainClass {
 	public static int ICElectricID;
 	int oreInteligentID;
 	int gemInteligentID;
+	public static int Cables;
 	//blocks section
 	//creativeTabs section 
 	//tools section
@@ -50,8 +53,7 @@ public class MainClass {
 	public void PreInit(FMLPreInitializationEvent event){
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		IDTW =  config.get("ItemIDs", "Wrench",1100).getInt();
-		testwrench = new testwrench(IDTW).setMaxDamage(100).setMaxStackSize(1);
+		inteligentWrenchID =  config.get("ItemIDs", "Wrench",1005).getInt();		
 		MachineID =  config.get("block", "ICMachine", 250).getInt();		
 		MachineID2 = config.get("block", "ICMachine2", 223).getInt();
 		blockGeneratorID = config.get("block", "ICblockGenerator", 246).getInt();
@@ -60,17 +62,26 @@ public class MainClass {
 		oreInteligentID = config.get("block", "inteligentGemOre", 1002).getInt();
 		gemInteligentID = config.get("item", "inteligentGem", 1003).getInt();
 		config.save();
+		Configuration configIC = new Configuration(new File("config/IC2.cfg"));
+		configIC.load();
+		MachineID =  configIC.get("block", "blockMachine", 250).getInt();		
+		MachineID2 = configIC.get("block", "blockMachine2", 223).getInt();
+		blockGeneratorID = configIC.get("block", "blockGenerator", 246).getInt();
+		ICElectricID = configIC.get("block", "blockElectric", 227).getInt();
+		Cables = configIC.get("block", "blockCable", 228).getInt();
+		configIC.save();
 		industrialIron = new IndustrialIron(industrialIronID);
 		gemInteligent = new InteligentGem(gemInteligentID);
 		oreInteligent = new InteligentOre(oreInteligentID, Material.rock);
+		inteligentWrench = new inteligentWrench(inteligentWrenchID).setMaxDamage(100).setMaxStackSize(1);
 		
 		
 	}
 	@EventHandler
 	public void load(FMLInitializationEvent event){
-		GameRegistry.registerItem(testwrench, "inteligentWrench");
-		LanguageRegistry.addName(testwrench, "Inteligent Wrench");
-		GameRegistry.addRecipe(new ItemStack(testwrench,1), new Object[]{"cbc","xex","xhx",'c', MainClass.industrialIron, 'e', Item.ingotGold, 'h',Block.cloth,'b',MainClass.gemInteligent});
+		GameRegistry.registerItem(inteligentWrench, "inteligentWrench");
+		LanguageRegistry.addName(inteligentWrench, "Inteligent Wrench");
+		GameRegistry.addRecipe(new ItemStack(inteligentWrench,1), new Object[]{"cbc","xex","xhx",'c', MainClass.industrialIron, 'e', Item.ingotGold, 'h',Block.cloth,'b',MainClass.gemInteligent});
 		GameRegistry.addShapelessRecipe(new ItemStack(industrialIron,5), new Object[]{Item.coal,Item.coal,Item.coal,Item.coal,Item.ingotIron});
 		OreDictionary.registerOre("ingotRefinedIron", new ItemStack (industrialIron));
 		GameRegistry.registerItem(industrialIron, "industrialIron");
